@@ -14,8 +14,8 @@ jobs:
     - name: show url
       run: |
         image="${{ github.event.inputs.docker_image }}"
-        echo "https://registry.hub.docker.com/v2/repositories/$image/tags?page=2&page_size=100"
+        echo "https://registry.hub.docker.com/v2/repositories/$image/tags?page=1&page_size=100"
     - name: get image tags   
       run: |
         image="${{ github.event.inputs.docker_image }}"
-        curl -L -s "https://registry.hub.docker.com/v2/repositories/$image/tags?page=2&page_size=100"       
+        curl -L -s "https://registry.hub.docker.com/v2/repositories/$image/tags?page=1&page_size=100"       
