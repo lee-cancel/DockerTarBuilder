@@ -1,0 +1,15 @@
+name: Get Docker Image Tags
+
+on:
+  workflow_dispatch:
+    inputs:
+      docker_image:
+        description: '请填写docker镜像名称'
+        required: true
+        default: 'alpine:latest'  # 设置默认的 Docker 镜像列表
+jobs:
+  get_tags:
+    runs-on: ubuntu-latest
+    steps:
+    - name: get image tags
+      run: curl -L -s "https://hub.docker.io/v2/$docker_image/tags/list"       
