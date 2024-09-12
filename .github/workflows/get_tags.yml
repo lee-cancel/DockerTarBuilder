@@ -11,5 +11,7 @@ jobs:
   get_tags:
     runs-on: ubuntu-latest
     steps:
+    - name: show url
+      run: echo "https://registry.hub.docker.com/v2/repositories/$docker_image/tags?page=2&page_size=100"
     - name: get image tags
       run: curl -L -s "https://registry.hub.docker.com/v2/repositories/$docker_image/tags?page=2&page_size=100"       
