@@ -11,5 +11,7 @@ jobs:
   get_tags:
     runs-on: ubuntu-latest
     steps:
+    - name: show url
+      run: echo "https://hub.docker.io/v2/repositories/library/zookeeper/tags?page_size=25&page=1&ordering=last_updated&name="
     - name: get image tags
-      run: curl -L -s "https://hub.docker.io/v2/$docker_image/tags/list"       
+      run: curl -L -s "https://hub.docker.io/v2/repositories/library/zookeeper/tags?page_size=25&page=1&ordering=last_updated&name="
