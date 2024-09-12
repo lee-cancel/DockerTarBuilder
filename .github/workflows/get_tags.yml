@@ -6,12 +6,12 @@ on:
       docker_image:
         description: '请填写docker镜像名称'
         required: true
-        default: 'alpine:latest'  # 设置默认的 Docker 镜像列表
+        default: 'apache/kafka'  # 设置默认的 Docker 镜像列表
 jobs:
   get_tags:
     runs-on: ubuntu-latest
     steps:
-    - name: show url
-      run: echo "https://registry.hub.docker.com/v2/repositories/library/zookeeper/tags"   
+    - name: ping
+      run: ping -c 3 registry.hub.docker.com       
     - name: get image tags
-      run: curl -L -s "https://registry.hub.docker.com/v2/repositories/library/zookeeper/tags"       
+      run: curl -L -s "https://registry.hub.docker.com/v2/repositories/library/zookeeper/tags?page=2&page_size=100"       
