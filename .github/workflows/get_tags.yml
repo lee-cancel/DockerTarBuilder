@@ -11,6 +11,10 @@ on:
         description: '请填写tag的关键字'
         required: false
         default: ''
+      page:
+        description: '页数'
+        required: true
+        default: '1'       
 jobs:
   get_tags:
     runs-on: ubuntu-latest
@@ -19,9 +23,11 @@ jobs:
       run: |
         image="${{ github.event.inputs.docker_image }}"
         name="${{ github.event.inputs.tag_name }}"
-        echo "https://registry.hub.docker.com/v2/repositories/$image/tags?page=1&page_size=100&name=$name"
+        page="${{ github.event.inputs.page }}"
+        echo "https://registry.hub.docker.com/v2/repositories/$image/tags?page=$page&page_size=100&name=$name"
     - name: get image tags   
       run: |
         image="${{ github.event.inputs.docker_image }}"
         name="${{ github.event.inputs.tag_name }}"
-        curl -L -s "https://registry.hub.docker.com/v2/repositories/$image/tags?page=1&page_size=500&name=$name"       
+        page="${{ github.event.inputs.page }}"
+        curl -L -s "https://registry.hub.docker.com/v2/repositories/$image/tags?page=$page&page_size=500&name=$name"       
