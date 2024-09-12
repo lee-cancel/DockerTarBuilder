@@ -6,7 +6,11 @@ on:
       docker_image:
         description: '请填写docker镜像名称'
         required: true
-        default: 'apache/kafka'  # 设置默认的 Docker 镜像列表
+        default: 'apache/kafka'
+      tag_name:
+        description: '请填写tag的关键字'
+        required: false
+        default: ''
 jobs:
   get_tags:
     runs-on: ubuntu-latest
@@ -14,8 +18,10 @@ jobs:
     - name: show url
       run: |
         image="${{ github.event.inputs.docker_image }}"
-        echo "https://registry.hub.docker.com/v2/repositories/$image/tags?page=0&page_size=100"
+        name="${{ github.event.inputs.tag_name }}"
+        echo "https://registry.hub.docker.com/v2/repositories/$image/tags?page=1&page_size=100&name=$name"
     - name: get image tags   
       run: |
         image="${{ github.event.inputs.docker_image }}"
-        curl -L -s "https://registry.hub.docker.com/v2/repositories/$image/tags?page=0&page_size=100"       
+        name="${{ github.event.inputs.tag_name }}"
+        curl -L -s "https://registry.hub.docker.com/v2/repositories/$image/tags?page=1&page_size=100&name=$name"       
