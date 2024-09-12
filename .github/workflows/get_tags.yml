@@ -11,7 +11,5 @@ jobs:
   get_tags:
     runs-on: ubuntu-latest
     steps:
-    - name: ping
-      run: ping -c 3 registry.hub.docker.com       
     - name: get image tags
-      run: curl -L -s "https://registry.hub.docker.com/v2/repositories/library/zookeeper/tags?page=2&page_size=100"       
+      run: curl -L -s "https://registry.hub.docker.com/v2/repositories/$docker_image/tags?page=2&page_size=100"       
