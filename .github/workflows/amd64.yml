@@ -27,6 +27,7 @@ jobs:
           docker pull "${image}" --platform "linux/amd64"
           image_name="${image//:/_}"
           image_name="${image//\//_}"
+          docker images
           echo "save image to ${image_name}-amd64.tar"
           docker save "${image}" -o "${image_name}-amd64.tar"
           docker inspect --format='{{.RepoDigests}}' "${image}" > "${image_name}.digest"
